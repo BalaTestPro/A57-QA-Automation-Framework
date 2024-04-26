@@ -21,7 +21,7 @@ public class BasePage {
         driver = givenDriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         actions = new Actions(driver);
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20), this);
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 60), this);
     }
 
     public WebElement waitForVisibility(WebElement element)
