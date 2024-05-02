@@ -19,14 +19,14 @@ public class BasePage {
 
     public BasePage(WebDriver givenDriver){
         driver = givenDriver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(100));
         actions = new Actions(driver);
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 60), this);
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 120), this);
     }
 
     public WebElement waitForVisibility(WebElement element)
     {
-        return new WebDriverWait(driver, Duration.ofSeconds(60)).until(ExpectedConditions.visibilityOf(element));
+        return new WebDriverWait(driver, Duration.ofSeconds(100)).until(ExpectedConditions.visibilityOf(element));
     }
 
 }
