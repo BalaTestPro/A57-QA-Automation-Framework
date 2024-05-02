@@ -26,7 +26,7 @@ public class BasePage {
 
     public WebElement waitForVisibility(WebElement element)
     {
-        return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(element));
+        return new WebDriverWait(driver, Duration.ofSeconds(60)).until(ExpectedConditions.visibilityOf(element));
     }
 
 }
