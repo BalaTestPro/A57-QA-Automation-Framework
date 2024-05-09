@@ -13,11 +13,9 @@ public class HomePage extends BasePage {
     }
 
     //WebElements
-    //@FindBy(css = "#mainFooter div[class='side player-controls']")
     @FindBy(xpath = "//i[@data-testid='play-next-btn']")
     private WebElement playerControlsBtn;
 
-    //@FindBy(css = "#mainFooter span[class='play']")
     @FindBy(xpath = "//span[@data-testid='play-btn']")
     private WebElement playNextSongBtn;
 
