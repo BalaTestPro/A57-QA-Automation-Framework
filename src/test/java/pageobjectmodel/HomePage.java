@@ -22,9 +22,17 @@ public class HomePage extends BasePage {
     @FindBy(css = "img[alt='Sound bars']")
     private  WebElement soundBar;
 
+    @FindBy(css = "img[class='avatar']")
+    private WebElement avatarIcon;
+
     public void playNextSong() {
         playerControlsBtn.click();
         playNextSongBtn.click();
+    }
+
+    public boolean getUserAvatar()
+    {
+        return avatarIcon.isDisplayed();
     }
 
     public boolean isSoundBarVisible()
