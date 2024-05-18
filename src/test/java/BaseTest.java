@@ -39,8 +39,6 @@ public class BaseTest {
         return threadDriver.get();
     }
 
-    //"https://qa.koel.app/";
-
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
