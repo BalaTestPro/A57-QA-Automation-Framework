@@ -14,7 +14,8 @@ public class Homework22 extends BaseTest{
         HomePage homepage = new HomePage(driver);
 
         //Login using Email and Password
-        loginpage.login();
+        //loginpage.login();
+        loginpage.login("sakthibala.sengottiyan@testpro.io","Smg6reUh");
 
         //Click Play Next Song
         homepage.playNextSong();

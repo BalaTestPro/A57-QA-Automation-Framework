@@ -40,7 +40,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public void login()
+    public void login(String email,String password)
     {
         provideEmail("sakthibala.sengottiyan@testpro.io");
         providePassword("Smg6reUh");

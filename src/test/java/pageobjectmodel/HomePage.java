@@ -13,24 +13,31 @@ public class HomePage extends BasePage {
     }
 
     //WebElements
-    @FindBy(xpath = "//i[@data-testid='play-next-btn']")
+    @FindBy(css = "#mainFooter div[class='side player-controls']")
     private WebElement playerControlsBtn;
 
-    @FindBy(xpath = "//span[@data-testid='play-btn']")
+    @FindBy(css = "#mainFooter span[class='play']")
     private WebElement playNextSongBtn;
 
     @FindBy(css = "img[alt='Sound bars']")
     private  WebElement soundBar;
+
+    @FindBy(css = "img[class='avatar']")
+    private WebElement avatarIcon;
 
     public void playNextSong() {
         playerControlsBtn.click();
         playNextSongBtn.click();
     }
 
-    public boolean isSoundBarVisible()
+    public boolean getUserAvatar()
     {
-       return waitForVisibility(soundBar).isDisplayed();
+        return avatarIcon.isDisplayed();
     }
 
+    public boolean isSoundBarVisible()
+    {
+        return waitForVisibility(soundBar).isDisplayed();
+    }
 
 }
