@@ -1,6 +1,6 @@
 package pageobjectmodel;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,29 +22,47 @@ public class LoginPage extends BasePage {
     @FindBy(css="button[type='submit']")
     private WebElement logInBtn;
 
-    public LoginPage provideEmail(String email)
+    public void provideEmail(String email)
     {
         emailField.sendKeys(email);
-        return this;
+        //return this;
     }
 
-    public LoginPage providePassword(String password)
+    public void providePassword(String password)
     {
         passwordField.sendKeys(password);
-        return this;
+        //return this;
     }
 
-    public LoginPage clickLogIn()
+    public void clickLogIn()
     {
         logInBtn.click();
-        return this;
+        //return this;
     }
 
     public void login(String email,String password)
     {
-        provideEmail("sakthibala.sengottiyan@testpro.io");
-        providePassword("Smg6reUh");
+        provideEmail(email);
+        providePassword(password);
         clickLogIn();
     }
+
+    public boolean isEmailFieldVisible(){
+        int attempt = 0;
+        boolean emailVisible = false;
+
+        while (attempt < 2) {
+            try {
+                waitForVisibility(emailField).isDisplayed();
+                emailVisible = true;
+                break;
+            } catch (StaleElementReferenceException ignored) { }
+            attempt ++;
+        }
+
+        return emailVisible;
+
+    }
+
 
 }

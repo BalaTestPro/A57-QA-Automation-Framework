@@ -1,6 +1,5 @@
 package pageobjectmodel;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -21,12 +20,12 @@ public class BasePage {
         driver = givenDriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         actions = new Actions(driver);
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20), this);
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 60), this);
     }
 
     public WebElement waitForVisibility(WebElement element)
     {
-        return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(element));
+        return new WebDriverWait(driver, Duration.ofSeconds(60)).until(ExpectedConditions.visibilityOf(element));
     }
 
 }

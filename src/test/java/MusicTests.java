@@ -12,7 +12,7 @@ public class MusicTests extends BaseTest {
         HomePage homePage = new HomePage(getDriver());
 
         //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyan@testpro.io","Smg6reUh");
+        loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
 
         //Click Play Next Song
         homePage.playNextSong();

@@ -59,7 +59,6 @@ public class BaseTest {
         getDriver().get(url);
     }
 
-
     @AfterMethod
     public void TearDown(){
         threadDriver.get().close();

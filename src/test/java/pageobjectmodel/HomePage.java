@@ -1,8 +1,6 @@
 package pageobjectmodel;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
@@ -25,6 +23,21 @@ public class HomePage extends BasePage {
     @FindBy(css = "img[class='avatar']")
     private WebElement avatarIcon;
 
+    @FindBy(css = "a[data-testid='btn-logout']")
+    private WebElement logOutBtn;
+
+    @FindBy(css = "a[href='/#!/profile'] + a[data-testid='btn-logout']")
+    private WebElement logStudentOutBtn;
+
+    @FindBy(css = "a[href='/#!/profile']")
+    private WebElement profileBtn;
+
+    @FindBy(css = "button[data-testid='toggle-extra-panel-btn']")
+    private WebElement infoPanelBtn;
+
+    @FindBy(css = "[data-testid='other-controls']")
+    private WebElement otherControlsBtn;
+
     public void playNextSong() {
         playerControlsBtn.click();
         playNextSongBtn.click();
@@ -39,5 +52,34 @@ public class HomePage extends BasePage {
     {
         return waitForVisibility(soundBar).isDisplayed();
     }
+
+    public void logOut()
+    {
+        int attempt = 0;
+
+        while (attempt < 2) {
+            try {
+                waitForVisibility(logOutBtn).click();
+                break;
+            } catch (StaleElementReferenceException ignored) { }
+            attempt ++;
+        }
+    }
+
+    public boolean isLogOutNextToProfile()
+    {
+       return logStudentOutBtn.isDisplayed();
+    }
+
+    public void clickProfile()
+    {
+        profileBtn.click();
+    }
+
+    public void clickInfoPanel()
+    {
+       actions.moveToElement(waitForVisibility(infoPanelBtn)).click().perform();
+    }
+
 
 }
