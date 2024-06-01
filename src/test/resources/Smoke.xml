@@ -6,12 +6,7 @@
     <test name="Smoke Tests" preserve-order="false">
         <classes>
             <class name="LogoutTests">
-<!--                <methods>-->
-<!--                    <include name="isLogOutSuccessful"/>-->
-<!--                    <include name="testLogOutAfterEmailUpdate"/>-->
-<!--                    <include name="testLogOutAfterPasswordUpdate"/>-->
-<!--                    <include name="testLogOutAfterEmailPasswordUpdate"/>-->
-<!--                 </methods>-->
+
             </class>
         </classes>
     </test>
