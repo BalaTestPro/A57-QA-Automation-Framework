@@ -27,7 +27,6 @@ public class LoginTests extends BaseTest {
         HomePage homePage = new HomePage(getDriver());
 
         loginPage.login(OLD_EMAIL,VALID_PASSWORD);
-        //Assert.assertEquals(getDriver().getCurrentUrl(),url);
         Assert.assertTrue(homePage.isNotDisplayedUserAvatarIcon(),"Incorrect error message for invalid email (old) login.");
 
     }
@@ -38,22 +37,31 @@ public class LoginTests extends BaseTest {
         HomePage homePage = new HomePage(getDriver());
 
         loginPage.login(VALID_EMAIL,INVALID_PASSWORD);
-        //Assert.assertEquals(getDriver().getCurrentUrl(),url);
         Assert.assertTrue(homePage.isNotDisplayedUserAvatarIcon(),"Incorrect error message for invalid password login.");
     }
 
-    @Test (description = "Login with invalid (old) password",priority = 4)
+
+    @Test (description = "Login with wrong email",priority = 4)
+    //Login using Old password
+    public void testWrongEmailLogin() {
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+
+        loginPage.login("\\\\\\\\\\",VALID_PASSWORD);
+        Assert.assertTrue(homePage.isNotDisplayedUserAvatarIcon());
+    }
+
+    @Test (description = "Login with invalid (old) password",priority = 5)
     //Login using Old password
     public void testOldPasswordLogin() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
         loginPage.login(VALID_EMAIL,OLD_PASSWORD);
-        //Assert.assertEquals(getDriver().getCurrentUrl(),url);
         Assert.assertTrue(homePage.isNotDisplayedUserAvatarIcon(),"Incorrect error message for invalid (old) password login.");
     }
 
-    @Test (description = "Login with Empty email",priority = 5)
+    @Test (description = "Login with Empty email",priority = 6)
     //Login using Empty email
     public void testEmptyEmailLogin() {
         LoginPage loginPage = new LoginPage(getDriver());
@@ -67,7 +75,7 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(actualErrorValidationMessage, expectedErrorValidationMessage,
                 "Incorrect error message for empty email login.");
     }
-    @Test (description = "Login with Empty password",priority = 6)
+    @Test (description = "Login with Empty password",priority = 7)
     //Login using valid email and Empty password
     public void testEmptyPasswordLogin() {
         LoginPage loginPage = new LoginPage(getDriver());
@@ -81,7 +89,7 @@ public class LoginTests extends BaseTest {
                 "Incorrect error message for empty email login.");
     }
 
-    @Test (description = "Login with both empty email and password", priority = 7)
+    @Test (description = "Login with both empty email and password", priority = 8)
     //Login using Empty email and Empty password
     public void testEmptyEmailPasswordLogin() {
         LoginPage loginPage = new LoginPage(getDriver());
@@ -94,7 +102,7 @@ public class LoginTests extends BaseTest {
                 "Incorrect error message for empty email and password login.");
     }
 
-    @Test(description = "Login with invalid email credentials", dataProvider = "invalidEmails", priority = 8)
+    @Test(description = "Login with invalid email credentials", dataProvider = "invalidEmails", priority = 9)
     public void testInvalidEmailsLogin(String email, String expectedErrorValidationMessage) {
         LoginPage loginPage = new LoginPage(getDriver());
 
@@ -107,7 +115,7 @@ public class LoginTests extends BaseTest {
 
     }
 
-    @Test(description = "Login with additional invalid password credentials", dataProvider = "invalidPasswords", priority = 9)
+    @Test(description = "Login with additional invalid password credentials", dataProvider = "invalidPasswords", priority = 10)
     public void testInvalidPasswordsLogin(String password, String description) {
         LoginPage loginPage = new LoginPage(getDriver());
 
