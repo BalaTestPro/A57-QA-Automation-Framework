@@ -81,5 +81,10 @@ public class HomePage extends BasePage {
        actions.moveToElement(waitForVisibility(infoPanelBtn)).click().perform();
     }
 
+    public boolean isNotDisplayedUserAvatarIcon() {
+        // Utilizes the waitForElementToBeNotVisible method to check if the user avatar icon is not visible
+        return waitForElementToBeNotVisible(avatarIcon);
+    }
+
 
 }

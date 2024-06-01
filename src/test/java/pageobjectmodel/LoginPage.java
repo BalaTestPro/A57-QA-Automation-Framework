@@ -45,6 +45,7 @@ public class LoginPage extends BasePage {
         provideEmail(email);
         providePassword(password);
         clickLogIn();
+
     }
 
     public boolean isEmailFieldVisible(){
@@ -64,5 +65,19 @@ public class LoginPage extends BasePage {
 
     }
 
+    public String getTextEmailValidationMessage()
+    {
+        return emailField.getAttribute("validationMessage");
+    }
+
+    public String getTextPasswordValidationMessage()
+    {
+        return passwordField.getAttribute("validationMessage");
+    }
+
+    public boolean isDisplayedLogInBtn(){
+
+        return logInBtn.isDisplayed();
+    }
 
 }

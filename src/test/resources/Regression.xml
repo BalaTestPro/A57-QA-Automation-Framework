@@ -7,7 +7,7 @@
          <classes>
             <class name="LoginTests">
                 <methods>
-                    <exclude name="loginValidEmailPassword"/>
+                    <exclude name="testSuccessfulLogin"/>
                 </methods>
             </class>
              <class name="LastVisitedPageTests"/>
