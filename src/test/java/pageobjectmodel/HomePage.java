@@ -53,7 +53,7 @@ public class HomePage extends BasePage {
         return waitForVisibility(soundBar).isDisplayed();
     }
 
-    public void logOut()
+    public void clickLogOut()
     {
         int attempt = 0;
 
@@ -79,6 +79,11 @@ public class HomePage extends BasePage {
     public void clickInfoPanel()
     {
        actions.moveToElement(waitForVisibility(infoPanelBtn)).click().perform();
+    }
+
+    public boolean isNotDisplayedUserAvatarIcon() {
+        // Utilizes the waitForElementToBeNotVisible method to check if the user avatar icon is not visible
+        return waitForElementToBeNotVisible(avatarIcon);
     }
 
 

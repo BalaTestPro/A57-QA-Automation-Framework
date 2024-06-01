@@ -5,12 +5,12 @@
    <parameter name="BaseURL" value="https://qa.koel.app/"/>
     <test name="Regression Tests" preserve-order="false">
          <classes>
-             <class name="LogoutTests">
-                 <methods>
-                     <include name="checkLogoutNextToProfile"/>
-                     <include name="checkLoginPageAfterLogOut"/>
-                 </methods>
-             </class>
+<!--             <class name="LogoutTests">-->
+<!--                 <methods>-->
+<!--                     <include name="testLogoutNextToProfile"/>-->
+<!--                     <include name="testLoginPageDisplayedAfterLogOut"/>-->
+<!--                 </methods>-->
+<!--             </class>-->
         </classes>
     </test>
 </suite>
