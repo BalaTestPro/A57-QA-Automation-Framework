@@ -4,8 +4,8 @@ import pageobjectmodel.*;
 
 public class PageNavigationCurrentQueueTests extends BaseTest{
 
-    @Test (priority = 1)
-    public void navigateToHomePage() {
+    @Test (description="Check navigation from Home Page to Current Queue Page",priority = 1)
+    public void navigateFromHomePage() {
 
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
@@ -14,10 +14,8 @@ public class PageNavigationCurrentQueueTests extends BaseTest{
         //Login using Email and Password
         loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
 
-        //Navigate to CurrentQueue Page
         currentQueuePage.clickCurrentQueueLink();
 
-        //Navigate to AllSongs Page
         homePage.clickHomePageLink();
 
         if (homePage.getHomePageHeader()) {
@@ -25,12 +23,11 @@ public class PageNavigationCurrentQueueTests extends BaseTest{
             homePage.playFirstMostPlayedSong();
         }
 
-        //Validate that the Current Queue Page is displayed on the screen
         Assert.assertTrue(currentQueuePage.isCurrentQueuePageHeaderDisplayed());
 
     }
 
-    @Test (priority = 2)
+    @Test (description="Check navigation from All Songs Page to Current Queue Page",priority = 2)
     public void navigateFromAllSongsPage() {
 
         LoginPage loginPage = new LoginPage(getDriver());
@@ -48,12 +45,11 @@ public class PageNavigationCurrentQueueTests extends BaseTest{
             allSongsPage.playFirstAllSongsPageSong();
         }
 
-        //Validate that the AllSongs Page is displayed on the screen
         Assert.assertTrue(currentQueuePage.isCurrentQueuePageHeaderDisplayed());
 
     }
 
-    @Test (priority = 3)
+    @Test (description="Check navigation from Albums Page to Current Queue Page", priority = 3)
     public void navigateFromAlbumsPage() {
 
         LoginPage loginPage = new LoginPage(getDriver());
@@ -69,13 +65,13 @@ public class PageNavigationCurrentQueueTests extends BaseTest{
         if (albumsPage.getAlbumsPageHeader()) {
             albumsPage.playFirstAlbumSong();
         }
-        //Validate that the Albums Page is displayed on the screen
+
         Assert.assertTrue(currentQueuePage.isCurrentQueuePageHeaderDisplayed());
 
 
     }
 
-    @Test (priority = 4)
+    @Test (description="Check navigation from Artists Page to Current Queue Page",priority = 4)
     public void navigateToArtistsPage() {
 
         LoginPage loginPage = new LoginPage(getDriver());
@@ -97,7 +93,7 @@ public class PageNavigationCurrentQueueTests extends BaseTest{
 
     }
 
-    @Test (priority = 5)
+    @Test (description="Check navigation from Favorites Page to Current Queue Page",priority = 5)
     public void navigateToFavoritesPage() {
 
         LoginPage loginPage = new LoginPage(getDriver());
@@ -115,12 +111,11 @@ public class PageNavigationCurrentQueueTests extends BaseTest{
             favoritesPage.playFavoriteSong(1);
         }
 
-        //Validate that the Favorites Page is displayed on the screen
         Assert.assertTrue(currentQueuePage.isCurrentQueuePageHeaderDisplayed());
 
     }
 
-    @Test (priority = 6)
+    @Test (description="Check navigation from Recently Played Page to Current Queue Page",priority = 6)
     public void navigateToRecentlyPlayedPage() {
 
         LoginPage loginPage = new LoginPage(getDriver());
@@ -138,12 +133,11 @@ public class PageNavigationCurrentQueueTests extends BaseTest{
             recentlyPlayedPage.playFirstRecentlyPlayedSong();
         }
 
-        //Validate that the Recently Played Page is displayed on the screen
         Assert.assertTrue(currentQueuePage.isCurrentQueuePageHeaderDisplayed());
 
     }
 
-    @Test (priority = 7)
+    @Test (description="Check navigation from User Playlist Page to Current Queue Page",priority = 7)
     public void navigateToUserPlayListPage() {
 
         LoginPage loginPage = new LoginPage(getDriver());
@@ -161,8 +155,7 @@ public class PageNavigationCurrentQueueTests extends BaseTest{
             userPlayListPage.playFirstUserPlayListSong();
         }
 
-        //Validate that the User PlayList Page is displayed on the screen
-        Assert.assertTrue(currentQueuePage.isCurrentQueuePageHeaderDisplayed());
+       Assert.assertTrue(currentQueuePage.isCurrentQueuePageHeaderDisplayed());
 
     }
 

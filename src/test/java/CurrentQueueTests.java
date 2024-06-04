@@ -17,22 +17,14 @@ public class CurrentQueueTests extends BaseTest{
         ArtistsPage artistsPage = new ArtistsPage(getDriver());
 
         String currentQueueArtistName = "";
-
         String footerArtistName = "";
 
-        //String userListFirstArtistName = "";
-
-        //Login using Email and Password
         loginPage.login(EMAIL,PASSWORD);
 
         //Navigate to Artists Page
         artistsPage.clickArtistsLink();
 
         artistsPage.playFirstArtistSong();
-
-        //Navigate to CurrentQueue Page
-        //currentQueuePage.clickCurrentQueueLink();
-        //currentQueuePage.clearCurrentQueue();
 
         if (currentQueuePage.getQueuePageHeader())
         {
@@ -41,39 +33,24 @@ public class CurrentQueueTests extends BaseTest{
             footerArtistName = homePage.getFooterArtistName();
         }
 
-        System.out.println(currentQueueArtistName);
-        System.out.println(footerArtistName);
-        //Navigate to User PlayList Page
-        //userPlayListPage.clickUserPlayListLink();
-
-        //userListFirstArtistName = userPlayListPage.getUserPlaylistFirstArtistName();
-       // userPlayListPage.playFirstUserPlayListSong();
-
         Assert.assertEquals(currentQueueArtistName,footerArtistName);
 
     }
 
     //Total count of songs
-    @Test (description="Current Queue Song Count is displayed",priority = 2)
+    @Test (description="Display the Current Queue Song Count",priority = 2)
 
     public void isCurrentQueueSongCountDisplayed() {
-        //Display currently played songs by a user
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
         CurrentQueuePage currentQueuePage = new CurrentQueuePage(getDriver());
-        //UserPlayListPage userPlayListPage = new UserPlayListPage(getDriver());
         ArtistsPage artistsPage = new ArtistsPage(getDriver());
 
-        //int songListcount = 0;
         int currentQueueSongCount;
-        //char countCharacter;
+
         boolean songCountDisplayed = false;
 
         String[] currentQueueSongInfo = new String[5];
-
-
-        //Login using Email and Password
-        //loginPage.login("sakthibala.sengottiyan@testpro.io", "te$t$tudent1");
 
         loginPage.login(EMAIL,PASSWORD);
 
@@ -82,29 +59,13 @@ public class CurrentQueueTests extends BaseTest{
 
         artistsPage.playFirstArtistSong();
 
-        //String[] abc = new String[5];
-
         if (currentQueuePage.getQueuePageHeader())
         {
             currentQueueSongInfo = currentQueuePage.getCurrentQueueSongCount().split("[ ]");
-            //System.out.println(abc[0]);
-            //System.out.println(abc[abc.length-1]);
-            //currentQueueSongCount = (currentQueuePage.getCurrentQueueSongCount()).charAt(0);
+
         }
-
-        //Navigate to User PlayList Page
-        //userPlayListPage.clickUserPlayListLink();
-
-        //Click Shuffle All button
-        //userPlayListPage.shuffleAllSongs();
-
-        //currentQueueSongCount = (currentQueuePage.getCurrentQueueSongCount()).charAt(0);
-
         currentQueueSongCount = Integer.parseInt(currentQueueSongInfo[0]);
 
-        //System.out.println(currentQueueSongCount);
-
-        //if (Character.getNumericValue(currentQueueSongCount) > 0)
         if (currentQueueSongCount > 0)
         {
             songCountDisplayed = true;
@@ -114,14 +75,12 @@ public class CurrentQueueTests extends BaseTest{
     }
 
     //Total duration count of all songs should be displayed
-    @Test (description="Current Queue Song Duration is displayed",priority = 3)
+    @Test (description="Display Current Queue Song Duration",priority = 3)
 
     public void isCurrentQueueSongDurationDisplayed() {
-        //Display currently played songs by a user
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
         CurrentQueuePage currentQueuePage = new CurrentQueuePage(getDriver());
-        //UserPlayListPage userPlayListPage = new UserPlayListPage(getDriver());
         ArtistsPage artistsPage = new ArtistsPage(getDriver());
 
         String[] songDuration;
@@ -144,9 +103,6 @@ public class CurrentQueueTests extends BaseTest{
 
         songDuration = currentQueueSongInfo[currentQueueSongInfo.length-1].split(":");
 
-        System.out.println(songDuration[0]);
-        System.out.println(songDuration[1]);
-
         if ((Integer.parseInt(songDuration[0]) > 0 ) || (Integer.parseInt(songDuration[1]) > 0))
         {
             songDurationDisplayed = true;
@@ -156,16 +112,13 @@ public class CurrentQueueTests extends BaseTest{
     }
 
     //ID, Title, Album, and TIme should be correctly displayed
-    @Test (description="ID, Title, Artist, Album, and Time should be displayed",priority = 4)
+    @Test (description="Verify if ID, Title, Artist, Album, and Time are displayed in Current Queue",priority = 4)
 
     public void isCurrentQueueSongInfoDisplayed() {
-        //Display currently played songs by a user
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
         CurrentQueuePage currentQueuePage = new CurrentQueuePage(getDriver());
-       // UserPlayListPage userPlayListPage = new UserPlayListPage(getDriver());
         ArtistsPage artistsPage = new ArtistsPage(getDriver());
-        //InfoPanelPage infoPanelPage = new InfoPanelPage(getDriver());
 
         boolean songInfoDisplayed = false;
 
@@ -178,24 +131,7 @@ public class CurrentQueueTests extends BaseTest{
 
         artistsPage.playFirstArtistSong();
 
-//        //Navigate to User PlayList Page
-//        userPlayListPage.clickUserPlayListLink();
-//
-//        userPlayListPage.playFirstUserPlayListSong();
-//
-//        //Click Info Panel
-//        if (!infoPanelPage.IsInfoPanelVisible()) {
-//            homePage.clickInfoPanel();
-//        }
-//
-//        //Click Artist tab
-//        infoPanelPage.clickArtistTab();
-//
-//        //Click Artist Shuffle button
-//        infoPanelPage.clickArtistShuffle();
-
         if (currentQueuePage.getQueuePageHeader()) {
-            //currentQueueSongInfo = currentQueuePage.getCurrentQueueSongCount().split("[ ]");
             songInfo = currentQueuePage.getCurrentQueueSongInfo();
         }
 
@@ -205,20 +141,6 @@ public class CurrentQueueTests extends BaseTest{
         Assert.assertTrue(songInfoDisplayed, "Complete song information should be displayed");
 
     }
-
-    //Navigate to Current Queue Page from Home on double-clicking the song
-
-    //Navigate to Current Queue Page from All Songs on double-clicking the song
-
-    //Navigate to Current Queue Page from Albums on double-clicking the song
-
-    //Navigate to Current Queue Page from Artists on double-clicking the song
-
-    //Navigate to Current Queue Page from Favorites on double-clicking the song
-
-    //Navigate to Current Queue Page from Recently played on double-clicking the song
-
-    //Navigate to Current Queue Page from User's created playlist on double-clicking the song
 
     //Shuffle All button should shuffle songs
 
@@ -254,8 +176,6 @@ public class CurrentQueueTests extends BaseTest{
 
         songListBeforeShuffle = currentQueuePage.queueSongList();
 
-        //infoPanelPage.clickAlbumShuffle();
-
         currentQueuePage.clickCurrentShuffleAll();
 
         songListAfterShuffle =  currentQueuePage.queueSongList();
@@ -263,9 +183,6 @@ public class CurrentQueueTests extends BaseTest{
         //Check if the song is shuffled by comparing the title before and after shuffle
         for (int i=0; i<songListcount; i++)
         {
-            System.out.println(songListBeforeShuffle[i]);
-            System.out.println(songListAfterShuffle[i]);
-            System.out.println("\n");
             if (songListBeforeShuffle[i].equals(songListAfterShuffle[i]))
             {
                 sameOrderCount = sameOrderCount + 1;
@@ -287,7 +204,6 @@ public class CurrentQueueTests extends BaseTest{
     @Test (description="Clear button clears the Current Queue ",priority = 6)
 
     public void testCurrentQueueClear() {
-        //Display currently played songs by a user
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
         CurrentQueuePage currentQueuePage = new CurrentQueuePage(getDriver());
@@ -295,7 +211,6 @@ public class CurrentQueueTests extends BaseTest{
 
         String currentQueueExpectedValidationMessage = "No songs queued." + "\n" + "How about shuffling all songs?";
 
-        //Login using Email and Password
         loginPage.login(EMAIL,PASSWORD);
 
         //Navigate to Artists Page
@@ -341,18 +256,13 @@ public class CurrentQueueTests extends BaseTest{
 
         allSongsCount = Integer.parseInt(allSongsInfo[0]);
 
-        //System.out.println(allSongsCount);
-
         allSongsPage.clickAllSongsShuffle();
 
         if (currentQueuePage.getQueuePageHeader()) {
             currentQueueSongInfo = currentQueuePage.getCurrentQueueSongCount().split("[ ]");
         }
 
-
         currentQueueSongCount = Integer.parseInt(currentQueueSongInfo[0]);
-
-        //System.out.println(currentQueueSongCount);
 
         Assert.assertEquals(currentQueueSongCount,allSongsCount);
 
