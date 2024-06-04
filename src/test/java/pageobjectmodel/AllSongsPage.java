@@ -15,6 +15,18 @@ public class AllSongsPage extends BasePage {
     @FindBy(css = "#songsWrapper h1")
     private WebElement allSongsPageHeader;
 
+    @FindBy(css = "#songsWrapper span[class='meta text-secondary'] span")
+    private WebElement allSongsCountElement;
+
+    @FindBy(css = "#songsWrapper button[data-test='btn-shuffle-all']")
+    private WebElement allSongsShuffleAllBtn;
+
+
+    @FindBy(css = "#songsWrapper table[class='items'] > tr")
+    private WebElement firstAllSongsElement;
+
+
+
     public void clickAllSongsLink() {
         allSongsLink.click();
     }
@@ -25,4 +37,22 @@ public class AllSongsPage extends BasePage {
         return allSongsPageHeader.isDisplayed();
     }
 
+    public void clickAllSongsShuffle() {
+
+        actions.moveToElement(waitForVisibility(allSongsShuffleAllBtn)).click().perform();
+
+    }
+
+    public String getAllSongsCount()
+    {
+        return allSongsCountElement.getText();
+    }
+
+    public void playFirstAllSongsPageSong()
+    {
+        actions.doubleClick(firstAllSongsElement).perform();
+        //actions.moveToElement(waitForVisibility(firstArtistSongElement)).click().perform();
+    }
 }
+
+

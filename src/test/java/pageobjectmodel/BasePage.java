@@ -1,5 +1,6 @@
 package pageobjectmodel;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -27,5 +28,22 @@ public class BasePage {
     {
         return new WebDriverWait(driver, Duration.ofSeconds(60)).until(ExpectedConditions.visibilityOf(element));
     }
+
+
+    protected boolean waitForElementToBeNotVisible(WebElement webElement) {
+        // Initialize a flag to track if the web element is not visible
+        boolean isWebElementNotVisible = false;
+        try {
+            // Wait for the given web element to become invisible within 1 second
+            isWebElementNotVisible = new WebDriverWait(driver, Duration.ofSeconds(1)).until(ExpectedConditions
+                    .invisibilityOf(webElement));
+        } catch (TimeoutException e) {
+            // If the element is still visible after waiting, set the flag to true
+            isWebElementNotVisible = true;
+        }
+        // Return whether the web element is not visible
+        return isWebElementNotVisible;
+    }
+
 
 }

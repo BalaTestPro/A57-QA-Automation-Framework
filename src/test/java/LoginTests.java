@@ -1,160 +1,148 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pageobjectmodel.HomePage;
 import pageobjectmodel.LoginPage;
 
-import java.time.Duration;
-
 public class LoginTests extends BaseTest {
 
-    @Test (priority = 1)
-    //Login using valid email and password
-    public void loginValidEmailPassword() {
+    private static final String VALID_EMAIL = "sakthibala.sengottiyan@testpro.io";
+    private static final String VALID_PASSWORD = "te$t$tudent1";
+    private static final String OLD_EMAIL = "sakthibala.sengottiyan+1@testpro.io";
+    private static final String OLD_PASSWORD = "te$t$tudent";
+    private static final String INVALID_PASSWORD = "1111111";
 
+    @Test (description = "Successful login with valid credentials",priority = 1)
+    public void testSuccessfulLogin() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
-        //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
-        Assert.assertTrue(homePage.getUserAvatar());
+        loginPage.login(VALID_EMAIL,VALID_PASSWORD);
+        Assert.assertTrue(homePage.getUserAvatar(),"Login with valid credentials should be successful.");
     }
 
-    @Test (priority = 2)
-    //Login using Updated email
-    public void loginUpdatedEmailValidPassword() {
-
+    @Test (description = "Login with invalid email", priority = 2)
+    public void testInvalidEmailLogin() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
-        //Login using Updated Email and Password
-        loginPage.login("sakthibala.sengottiyan+2@testpro.io","te$t$tudent2");
-        Assert.assertTrue(homePage.getUserAvatar());
+        loginPage.login(OLD_EMAIL,VALID_PASSWORD);
+        Assert.assertTrue(homePage.isNotDisplayedUserAvatarIcon(),"Incorrect error message for invalid email (old) login.");
+
     }
 
-    @Test (priority = 3)
-    //Login using Old email
-    public void loginOldEmailValidPassword() {
-
+    @Test (description = "Login with invalid password",priority = 3)
+    public void testInvalidPasswordLogin() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
-        //Login using Old Email and Password
-        loginPage.login("sakthibala.sengottiyan+1@testpro.io","te$t$tudent2");
-        Assert.assertEquals(getDriver().getCurrentUrl(),url);
-
+        loginPage.login(VALID_EMAIL,INVALID_PASSWORD);
+        Assert.assertTrue(homePage.isNotDisplayedUserAvatarIcon(),"Incorrect error message for invalid password login.");
     }
 
-    @Test (priority = 4)
-    //Login using Updated password
-    public void loginValidEmailUpdatedPassword() {
 
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
-
-        //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyan+2@testpro.io","te$t$tudent2");
-        //Assert.assertEquals(getDriver().getCurrentUrl(),url);
-        Assert.assertTrue(homePage.getUserAvatar());
-    }
-
-    @Test (priority = 5)
+    @Test (description = "Login with wrong email",priority = 4)
     //Login using Old password
-    public void loginValidEmailOldPassword() {
-
+    public void testWrongEmailLogin() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
-        //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyan+2@testpro.io","te$t$tudent1");
-        Assert.assertEquals(getDriver().getCurrentUrl(),url);
+        loginPage.login("\\\\\\\\\\",VALID_PASSWORD);
+        Assert.assertTrue(homePage.isNotDisplayedUserAvatarIcon());
     }
 
-    @Test (priority = 6)
-    //Login using Invalid email format 1 (without @) and valid password
-    public void loginInvalidEmailFormat1ValidPassword() {
-
+    @Test (description = "Login with invalid (old) password",priority = 5)
+    //Login using Old password
+    public void testOldPasswordLogin() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
-        //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyantestpro.io","te$t$tudent1");
-        Assert.assertEquals(getDriver().getCurrentUrl(),url);
+        loginPage.login(VALID_EMAIL,OLD_PASSWORD);
+        Assert.assertTrue(homePage.isNotDisplayedUserAvatarIcon(),"Incorrect error message for invalid (old) password login.");
     }
 
-    @Test (priority = 7)
-    //Login using Invalid email format 2 (without dot) and valid password
-    public void loginInvalidEmailFormat2ValidPassword() {
-
+    @Test (description = "Login with Empty email",priority = 6)
+    //Login using Empty email
+    public void testEmptyEmailLogin() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
-        //Login using Email and Password
-        loginPage.login("sakthibalasengottiyan@testproio","te$t$tudent1");
-        Assert.assertEquals(getDriver().getCurrentUrl(),url);
+        loginPage.login("",VALID_PASSWORD);
+
+        String actualErrorValidationMessage = loginPage.getTextEmailValidationMessage();
+        String expectedErrorValidationMessage = "Please fill out this field.";
+
+        Assert.assertEquals(actualErrorValidationMessage, expectedErrorValidationMessage,
+                "Incorrect error message for empty email login.");
     }
-
-    @Test (priority = 8)
-    //Login using Invalid email format 3 (without domain) and valid password
-    public void loginInvalidEmailFormat3ValidPassword() {
-
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
-
-        //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyan@","te$t$tudent1");
-        Assert.assertEquals(getDriver().getCurrentUrl(),url);
-    }
-
-    @Test (priority = 9)
-    //Login using Valid email and Invalid password
-    public void loginValidEmailInvalidPassword() {
-
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
-
-        //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyan@testpro.io","e$t$tudent1");
-        Assert.assertEquals(getDriver().getCurrentUrl(),url);
-    }
-
-    @Test (priority = 10)
-    //Login using Empty email and valid password
-    public void loginEmptyEmailValidPassword() {
-
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
-
-        //Login using Email and Password
-        loginPage.login("","te$t$tudent1");
-        Assert.assertEquals(getDriver().getCurrentUrl(),url);
-    }
-    @Test (priority = 11)
+    @Test (description = "Login with Empty password",priority = 7)
     //Login using valid email and Empty password
-    public void loginValidEmailEmptyPassword() {
-
+    public void testEmptyPasswordLogin() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
-        //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyan@testpro.io","");
-        Assert.assertEquals(getDriver().getCurrentUrl(),url);
+        loginPage.login(VALID_EMAIL,"");
+        String actualErrorValidationMessage = loginPage.getTextPasswordValidationMessage();
+        String expectedErrorValidationMessage = "Please fill out this field.";
+
+        Assert.assertEquals(actualErrorValidationMessage, expectedErrorValidationMessage,
+                "Incorrect error message for empty email login.");
     }
 
-    @Test (priority = 12)
+    @Test (description = "Login with both empty email and password", priority = 8)
     //Login using Empty email and Empty password
-    public void loginEmptyEmailEmptyPassword() {
-
+    public void testEmptyEmailPasswordLogin() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
-        //Login using Email and Password
         loginPage.login("","");
-        Assert.assertEquals(getDriver().getCurrentUrl(),url);
+        String actualErrorValidationMessage = loginPage.getTextEmailValidationMessage();
+        String expectedErrorValidationMessage = "Please fill out this field.";
+        Assert.assertEquals(actualErrorValidationMessage, expectedErrorValidationMessage,
+                "Incorrect error message for empty email and password login.");
     }
 
+    @Test(description = "Login with invalid email credentials", dataProvider = "invalidEmails", priority = 9)
+    public void testInvalidEmailsLogin(String email, String expectedErrorValidationMessage) {
+        LoginPage loginPage = new LoginPage(getDriver());
 
+        loginPage.login(email,VALID_PASSWORD);
+
+        String actualErrorValidationMessage = loginPage.getTextEmailValidationMessage();
+
+        Assert.assertEquals(actualErrorValidationMessage, expectedErrorValidationMessage,
+                "Incorrect error message for invalid email login: " + email);
+
+    }
+
+    @Test(description = "Login with additional invalid password credentials", dataProvider = "invalidPasswords", priority = 10)
+    public void testInvalidPasswordsLogin(String password, String description) {
+        LoginPage loginPage = new LoginPage(getDriver());
+
+        loginPage.login(VALID_EMAIL,password);
+
+        System.out.println(password);
+        System.out.println(description);
+
+        Assert.assertTrue(loginPage.isDisplayedLogInBtn(), "Wrong password: " + description);
+    }
+    @DataProvider(name = "invalidEmails")
+    private Object[][] provideInvalidEmails() {
+        return new Object[][]{
+                {"sakthibala.sengottiyan@@testpro.io", "A part following '@' should not contain the symbol '@'."},
+                {"sakthibala.sengottiyan@testpro..io", "'.' is used at a wrong position in 'testpro..io'."},
+                {"sakthibala.sengottiyan @testpro.io", "A part followed by '@' should not contain the symbol ' '."},
+        };
+    }
+
+    @DataProvider(name = "invalidPasswords")
+    private Object[][] provideInvalidPasswords() {
+        return new Object[][]{
+                {"te$t$tudent..", "Invalid password"},
+                {"!@#$%^&*()", "Invalid password with special characters"},
+                {"123456789012345678901234567890123456789012345678901234567890123456789012345678901", "Long password"},
+                {"1", "Short password"},
+        };
+    }
 
 }

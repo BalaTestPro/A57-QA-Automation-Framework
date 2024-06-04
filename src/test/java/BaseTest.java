@@ -60,9 +60,15 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void TearDown(){
-        threadDriver.get().close();
-        threadDriver.remove();
+    public void TearDown() {
+    try {
+    threadDriver.get().close();
+    threadDriver.remove();
+
+    }catch (Exception e)
+
+    {  }
+
     }
 
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {

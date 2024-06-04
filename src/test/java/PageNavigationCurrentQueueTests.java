@@ -1,12 +1,11 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.thread.IThreadWorkerFactory;
 import pageobjectmodel.*;
 
-public class LastVisitedPageTests extends BaseTest {
+public class PageNavigationCurrentQueueTests extends BaseTest{
 
     @Test (priority = 1)
-    public void navigateToLastVisitedCurrentQueuePage() {
+    public void navigateToHomePage() {
 
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
@@ -15,27 +14,28 @@ public class LastVisitedPageTests extends BaseTest {
         //Login using Email and Password
         loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
 
-        //Navigate to CurrentQueuePage
+        //Navigate to CurrentQueue Page
         currentQueuePage.clickCurrentQueueLink();
 
-        //Log Out
-        homePage.clickLogOut();
+        //Navigate to AllSongs Page
+        homePage.clickHomePageLink();
 
-        //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
+        if (homePage.getHomePageHeader()) {
+
+            homePage.playFirstMostPlayedSong();
+        }
 
         //Validate that the Current Queue Page is displayed on the screen
-        Assert.assertTrue(currentQueuePage.getQueuePageHeader());
-
+        Assert.assertTrue(currentQueuePage.isCurrentQueuePageHeaderDisplayed());
 
     }
 
     @Test (priority = 2)
-    public void navigateToLastVisitedAllSongsPage() {
+    public void navigateFromAllSongsPage() {
 
         LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
         AllSongsPage allSongsPage = new AllSongsPage(getDriver());
+        CurrentQueuePage currentQueuePage = new CurrentQueuePage(getDriver());
 
         //Login using Email and Password
         loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
@@ -43,23 +43,22 @@ public class LastVisitedPageTests extends BaseTest {
         //Navigate to AllSongs Page
         allSongsPage.clickAllSongsLink();
 
-        //Log Out
-        homePage.clickLogOut();
+        if (allSongsPage.getAllSongsPageHeader()) {
 
-        //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
+            allSongsPage.playFirstAllSongsPageSong();
+        }
 
-        //Validate that AllSongs Page is displayed on the screen
-        Assert.assertTrue(allSongsPage.getAllSongsPageHeader());
+        //Validate that the AllSongs Page is displayed on the screen
+        Assert.assertTrue(currentQueuePage.isCurrentQueuePageHeaderDisplayed());
 
     }
 
     @Test (priority = 3)
-    public void navigateToLastVisitedAlbumsPage() {
+    public void navigateFromAlbumsPage() {
 
         LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
         AlbumsPage albumsPage = new AlbumsPage(getDriver());
+        CurrentQueuePage currentQueuePage = new CurrentQueuePage(getDriver());
 
         //Login using Email and Password
         loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
@@ -67,23 +66,21 @@ public class LastVisitedPageTests extends BaseTest {
         //Navigate to Albums Page
         albumsPage.clickAlbumsLink();
 
-        //Log Out
-        homePage.clickLogOut();
-
-        //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
-
+        if (albumsPage.getAlbumsPageHeader()) {
+            albumsPage.playFirstAlbumSong();
+        }
         //Validate that the Albums Page is displayed on the screen
-        Assert.assertTrue(albumsPage.getAlbumsPageHeader());
+        Assert.assertTrue(currentQueuePage.isCurrentQueuePageHeaderDisplayed());
+
 
     }
 
     @Test (priority = 4)
-    public void navigateToLastVisitedArtistsPage() {
+    public void navigateToArtistsPage() {
 
         LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
         ArtistsPage artistsPage = new ArtistsPage(getDriver());
+        CurrentQueuePage currentQueuePage = new CurrentQueuePage(getDriver());
 
         //Login using Email and Password
         loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
@@ -91,23 +88,21 @@ public class LastVisitedPageTests extends BaseTest {
         //Navigate to Artists Page
         artistsPage.clickArtistsLink();
 
-        //Log Out
-        homePage.clickLogOut();
+        if (artistsPage.getArtistsPageHeader()) {
+            artistsPage.playFirstArtistSong();
+        }
 
-        //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
-
-        //Validate that Artists Page is displayed on the screen
-        Assert.assertTrue(artistsPage.getArtistsPageHeader());
+        //Validate that the Artists Page is displayed on the screen
+        Assert.assertTrue(currentQueuePage.isCurrentQueuePageHeaderDisplayed());
 
     }
 
     @Test (priority = 5)
-    public void navigateToLastVisitedFavoritesPage() {
+    public void navigateToFavoritesPage() {
 
         LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
         FavoritesPage favoritesPage = new FavoritesPage(getDriver());
+        CurrentQueuePage currentQueuePage = new CurrentQueuePage(getDriver());
 
         //Login using Email and Password
         loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
@@ -115,23 +110,22 @@ public class LastVisitedPageTests extends BaseTest {
         //Navigate to Favorites Page
         favoritesPage.clickFavoritesLink();
 
-        //Log Out
-        homePage.clickLogOut();
-
-        //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
+        if (favoritesPage.getFavoritesPageHeader())
+        {
+            favoritesPage.playFavoriteSong(1);
+        }
 
         //Validate that the Favorites Page is displayed on the screen
-        Assert.assertTrue(favoritesPage.getFavoritesPageHeader());
+        Assert.assertTrue(currentQueuePage.isCurrentQueuePageHeaderDisplayed());
 
     }
 
     @Test (priority = 6)
-    public void navigateToLastVisitedRecentlyPlayedPage() {
+    public void navigateToRecentlyPlayedPage() {
 
         LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
         RecentlyPlayedPage recentlyPlayedPage = new RecentlyPlayedPage(getDriver());
+        CurrentQueuePage currentQueuePage = new CurrentQueuePage(getDriver());
 
         //Login using Email and Password
         loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
@@ -139,23 +133,22 @@ public class LastVisitedPageTests extends BaseTest {
         //Navigate to Recently Played Page
         recentlyPlayedPage.clickRecentlyPlayedLink();
 
-        //Log Out
-        homePage.clickLogOut();
-
-        //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
+        if (recentlyPlayedPage.getRecentlyPlayedPageHeader())
+        {
+            recentlyPlayedPage.playFirstRecentlyPlayedSong();
+        }
 
         //Validate that the Recently Played Page is displayed on the screen
-        Assert.assertTrue(recentlyPlayedPage.getRecentlyPlayedPageHeader());
+        Assert.assertTrue(currentQueuePage.isCurrentQueuePageHeaderDisplayed());
 
     }
 
     @Test (priority = 7)
-    public void navigateToLastVisitedUserPlayListPage() {
+    public void navigateToUserPlayListPage() {
 
         LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
         UserPlayListPage userPlayListPage = new UserPlayListPage(getDriver());
+        CurrentQueuePage currentQueuePage = new CurrentQueuePage(getDriver());
 
         //Login using Email and Password
         loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
@@ -163,17 +156,15 @@ public class LastVisitedPageTests extends BaseTest {
         //Navigate to User PlayList Page
         userPlayListPage.clickUserPlayListLink();
 
-        //Log Out
-        homePage.clickLogOut();
+        if (userPlayListPage.getUserPlayListPageHeader())
+        {
+            userPlayListPage.playFirstUserPlayListSong();
+        }
 
-        //Login using Email and Password
-        loginPage.login("sakthibala.sengottiyan@testpro.io","te$t$tudent1");
-
-        //Validate that the User PlayList Queue Page is displayed on the screen
-        Assert.assertTrue(userPlayListPage.getUserPlayListPageHeader());
+        //Validate that the User PlayList Page is displayed on the screen
+        Assert.assertTrue(currentQueuePage.isCurrentQueuePageHeaderDisplayed());
 
     }
-
 
 
 }

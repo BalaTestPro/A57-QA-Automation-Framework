@@ -15,6 +15,9 @@ public class ArtistsPage extends BasePage{
     @FindBy(css = "#artistsWrapper h1")
     private WebElement artistsPageHeader;
 
+    @FindBy(css = "#artistsWrapper article:first-child")
+    private WebElement firstArtistSongElement;
+
     public void clickArtistsLink() {
         artistsLink.click();
     }
@@ -23,5 +26,11 @@ public class ArtistsPage extends BasePage{
     {
         waitForVisibility(artistsPageHeader);
         return artistsPageHeader.isDisplayed();
+    }
+
+    public void playFirstArtistSong()
+    {
+        //actions.doubleClick(firstUserSongElement).perform();
+        actions.moveToElement(waitForVisibility(firstArtistSongElement)).click().perform();
     }
 }

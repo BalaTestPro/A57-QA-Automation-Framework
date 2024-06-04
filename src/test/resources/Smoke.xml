@@ -5,13 +5,15 @@
     <parameter name="BaseURL" value="https://qa.koel.app/"/>
     <test name="Smoke Tests" preserve-order="false">
         <classes>
-<!--            <class name="LoginTests">-->
+            <class name="CurrentQueueTests"/>
+<!--            <class name="LoginTestsDONOTUSE">-->
 <!--            <methods>-->
 <!--                <include name="loginValidEmailPassword"/>-->
 <!--            </methods>-->
 <!--            </class>-->
 <!--            <class name="PageNavigationTests"/>-->
-<!--            <class name="LogoutTests">-->
+<!--            <class name="ProfileTests"/>-->
+<!--            <class name="LogoutTests"/>-->
 <!--                <methods>-->
 <!--                    <include name="verifyLogOut"/>-->
 <!--                    <include name="verifyLogOutAfterUpdatingEmail"/>-->
@@ -19,16 +21,17 @@
 <!--                    <include name="verifyLogOutAfterUpdatingEmailAndPassword"/>-->
 <!--                 </methods>-->
 <!--            </class>-->
-            <class name="InfoPanelTests">
-            <methods>
-                <include name="checkInfoPanelVisibility"/>
-                <include name="checkInfoPanelInvisibility"/>
-                <include name="checkSongLyricsDisplayed"/>
-                <include name="checkPlayingSongArtistName"/>
-                <include name="checkPlayingSongAlbumName"/>
-                <include name="checkPlayingSongAlbumCover"/>
-            </methods>
-            </class>
+<!--            <class name="PageNavigationCurrentQueueTests">-->
+<!--            <class name="InfoPanelTests">-->
+<!--            <methods>-->
+<!--                <include name="checkInfoPanelVisibility"/>-->
+<!--                <include name="checkInfoPanelInvisibility"/>-->
+<!--                <include name="checkSongLyricsDisplayed"/>-->
+<!--                <include name="checkPlayingSongArtistName"/>-->
+<!--                <include name="checkPlayingSongAlbumName"/>-->
+<!--                <include name="checkPlayingSongAlbumCover"/>-->
+<!--            </methods>-->
+<!--            </class>-->
         </classes>
     </test>
 </suite>

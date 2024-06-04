@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class UserPlayListPage extends BasePage{
 
     public UserPlayListPage(WebDriver givenDriver) { super(givenDriver); }
@@ -18,8 +20,14 @@ public class UserPlayListPage extends BasePage{
     @FindBy(css = "#playlistWrapper table[class='items'] > tr")
     private WebElement firstUserSongElement;
 
+    @FindBy(css = "#playlistWrapper table[class='items'] td[class='artist']")
+    private WebElement firstSongElementArtist;
+
+    @FindBy(css = "#playlistWrapper  button[class='btn-shuffle-all']")
+    private WebElement userPlayListShuffleAll;
+
     public void clickUserPlayListLink() {
-        userPlayListLink.click();
+        waitForVisibility(userPlayListLink).click();
     }
 
     public boolean getUserPlayListPageHeader()
@@ -31,6 +39,16 @@ public class UserPlayListPage extends BasePage{
     public void playFirstUserPlayListSong()
     {
         actions.doubleClick(firstUserSongElement).perform();
-
     }
+
+    public String getUserPlaylistFirstArtistName()
+    {
+        return waitForVisibility(firstSongElementArtist).getText();
+    }
+
+    public void shuffleAllSongs()
+    {
+        waitForVisibility(userPlayListShuffleAll).click();
+    }
+
 }
