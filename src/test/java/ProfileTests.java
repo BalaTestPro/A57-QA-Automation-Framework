@@ -29,22 +29,13 @@ public class ProfileTests extends BaseTest{
 
         loginPage.login("sakthibala.sengottiyan+2@testpro.io","te$t$tudent2");
 
-        //Click Profile
         homePage.clickProfile();
 
         //Update Email and Save
         profilePage.updateEmail("te$t$tudent2","sakthibala.sengottiyan+3@testpro.io");
 
-        //wait for the alert to disappear
+        homePage.clickLogOut();
 
-//        if (homePage.isNotDisplayedSuccessAlert()) {
-
-            homePage.clickLogOut();
-//        }
-
-        //loginPage.login("sakthibala.sengottiyan+3@testpro.io","te$t$tudent2");
-
-        //Assert.assertTrue(homePage.getUserAvatar(),"Login with updated email should be successful.");
         Assert.assertTrue(homePage.isNotDisplayedUserAvatarIcon(),"Login with updated email should be successful.");
 
     }
@@ -65,16 +56,8 @@ public class ProfileTests extends BaseTest{
         //Update Password and Save
         profilePage.updatePassword("te$t$tudent2","te$t$tudent1");
 
-        //wait for the alert to disappear
+        homePage.clickLogOut();
 
-//        if (homePage.isNotDisplayedSuccessAlert()) {
-
-            homePage.clickLogOut();
-
-//        }
-//        loginPage.login("sakthibala.sengottiyan+3@testpro.io","te$t$tudent2");
-
-        //Assert.assertTrue(homePage.getUserAvatar(),"Login with updated password should be successful.");
         Assert.assertTrue(homePage.isNotDisplayedUserAvatarIcon(),"Login with updated password should be successful.");
 
     }
@@ -95,22 +78,8 @@ public class ProfileTests extends BaseTest{
         //Update Email and Password and Save
         profilePage.updateEmailPassword("te$t$tudent1","sakthibala.sengottiyan+2@testpro.io","te$t$tudent2");
 
-        //wait for the alert to disappear
+        homePage.clickLogOut();
 
-        //wait for the alert to disappear
-
-//        if (homePage.isNotDisplayedSuccessAlert()) {
-
-//            System.out.println(homePage.isNotDisplayedSuccessAlert());
-
-            homePage.clickLogOut();
-
-//        }
-
-//        loginPage.login("sakthibala.sengottiyan+2@testpro.io","te$t$tudent2");
-
-        //Assert.assertTrue(homePage.isNotDisplayedUserAvatarIcon());
-//        Assert.assertTrue(homePage.getUserAvatar(),"Login with updated email and password should be successful.");
         Assert.assertTrue(homePage.isNotDisplayedUserAvatarIcon(),"Login with updated email and password should be successful.");
 
     }
@@ -132,12 +101,8 @@ public class ProfileTests extends BaseTest{
         //Update Email and Save
         profilePage.updateName("te$t$tudent2", newProfileName);
 
-        //wait for the alert to disappear
-
         if (homePage.isNotDisplayedSuccessAlert()) {
 
-            //System.out.println(homePage.isNotDisplayedSuccessAlert());
-            //check the name on the Page
             Assert.assertEquals(profilePage.getProfileName(), newProfileName);
         }
 
@@ -178,7 +143,6 @@ public class ProfileTests extends BaseTest{
         profilePage.clickShowBlurredAlbumArtOverlay();
 
         Assert.assertTrue(profilePage.isAlbumArtOverlayDisplayed(),"Blurred overlay of the Album Art is displayed");
-
     }
 
     //'Show Now Playing' notification validation - Functionality is not implemented yet
