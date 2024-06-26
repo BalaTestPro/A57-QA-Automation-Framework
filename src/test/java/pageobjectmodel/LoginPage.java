@@ -1,5 +1,6 @@
 package pageobjectmodel;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,30 +14,42 @@ public class LoginPage extends BasePage {
     }
 
     //WebElements
-    @FindBy(css="input[type='email']")
-    private WebElement emailField;
 
-    @FindBy(css="input[type='password']")
-    private WebElement passwordField;
+    //private WebElement emailField;
+    private By emailField = By.cssSelector("input[type='email']");
 
-    @FindBy(css="button[type='submit']")
-    private WebElement logInBtn;
+//    @FindBy(css="input[type='password']")
+//    private WebElement passwordField;
+
+    private By passwordField = By.cssSelector("input[type='password']");
+
+//    @FindBy(css="button[type='submit']")
+//    private WebElement logInBtn;
+
+    private By logInBtn = By.cssSelector("button[type='submit']");
+
+
+    private By registerLink = By.cssSelector("a[href='registration']");
 
     public void provideEmail(String email)
     {
-        emailField.sendKeys(email);
+        findElement(emailField).clear();
+        findElement(emailField).sendKeys(email);
         //return this;
     }
 
     public void providePassword(String password)
     {
-        passwordField.sendKeys(password);
+        findElement(passwordField).clear();
+        findElement(passwordField).sendKeys(password);
+        //passwordField.sendKeys(password);
         //return this;
     }
 
     public void clickLogIn()
     {
-        logInBtn.click();
+        findElement(logInBtn).click();;
+        //logInBtn.click();
         //return this;
     }
 
@@ -47,37 +60,48 @@ public class LoginPage extends BasePage {
         clickLogIn();
     }
 
-    public boolean isEmailFieldVisible(){
-        int attempt = 0;
-        boolean emailVisible = false;
 
-        while (attempt < 2) {
-            try {
-                waitForVisibility(emailField).isDisplayed();
-                emailVisible = true;
-                break;
-            } catch (StaleElementReferenceException ignored) { }
-            attempt ++;
-        }
 
-        return emailVisible;
-
+    public void clickRegisterLink()
+    {
+        findElement(registerLink).click();
     }
 
+//    public boolean isEmailFieldVisible(){
+//        int attempt = 0;
+//        boolean emailVisible = false;
+//
+//        while (attempt < 2) {
+//            try {
+//                waitForVisibility(emailField).isDisplayed();
+//                emailVisible = true;
+//                break;
+//            } catch (StaleElementReferenceException ignored) { }
+//            attempt ++;
+//        }
+//
+//        return emailVisible;
+//
+//    }
 
     public String getTextEmailValidationMessage()
     {
-        return emailField.getAttribute("validationMessage");
+        return findElement(emailField).getAttribute("validationMessage");
     }
 
     public String getTextPasswordValidationMessage()
     {
-        return passwordField.getAttribute("validationMessage");
+        return findElement(passwordField).getAttribute("validationMessage");
     }
 
     public boolean isDisplayedLogInBtn(){
 
-        return logInBtn.isDisplayed();
+        return findElement(logInBtn).isDisplayed();
+    }
+
+    public boolean isPasswordMasked()
+    {
+        return findElement(passwordField).getAttribute("type").equals("password");
     }
 
 
