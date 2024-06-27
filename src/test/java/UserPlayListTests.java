@@ -58,7 +58,6 @@ public class UserPlayListTests extends BaseTest{
         Assert.assertFalse(homePage.isSuccessAlertDisplayed(),"Incorrect PlayListName: " + description);
 
     }
-
     @DataProvider(name = "invalidPlayListNames")
     private Object[][] provideInvalidPlaylistNames() {
         return new Object[][]{
