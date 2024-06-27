@@ -5,11 +5,12 @@
     <parameter name="BaseURL" value="https://qa.koel.app/"/>
     <test name="Smoke Tests" preserve-order="false">
         <classes>
-<!--            <class name="AccountCreationTests">-->
-<!--                <methods>-->
-<!--                    <exclude name="testInvalidEmailsLogin"/>-->
-<!--                </methods>-->
-<!--            </class>-->
+            <class name="AccountCreationTests">
+                <methods>
+                    <include name="testCreateAccount"/>
+                    <include name="testSuccessfulLogin"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

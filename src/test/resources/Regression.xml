@@ -6,15 +6,12 @@
     <parameter name="BaseURL" value="https://qa.koel.app/"/>
     <test name="Regression Tests" preserve-order="false">
          <classes>
-            <class name="UserPlayListTests">
-<!--             <class name="PasswordTests">-->
-<!--                 <methods>-->
-<!--                     <include name="testLoginAfterPasswordUpdate"/>-->
-<!--                     <include name="testOldPasswordLogin"/>-->
-<!--                     <include name="testUpdatePasswordToOriginal"/>-->
-<!--                 </methods>-->
-<!--             </class>-->
-         </class>
+             <class name="AccountCreationTests">
+                 <methods>
+                     <exclude name="testCreateAccount"/>
+                     <exclude name="testSuccessfulLogin"/>
+                 </methods>
+             </class>
         </classes>
     </test>
 </suite>
