@@ -40,7 +40,8 @@ public class HomePage extends BasePage {
 //    private WebElement profileBtn;
 
     private By profileBtn = By.cssSelector("a[href='/#!/profile']");
-//
+
+    //
 //    @FindBy(css = "button[data-testid='toggle-extra-panel-btn']")
 //    private WebElement infoPanelBtn;
 //
@@ -67,7 +68,11 @@ public class HomePage extends BasePage {
     private By playlistPlusBtn = By.cssSelector("#playlists [data-testid='sidebar-create-playlist-btn']");
     private By newPlaylistBtn = By.cssSelector("#playlists [data-testid='playlist-context-menu-create-simple']");
 
+    private By smartPlaylistBtn = By.cssSelector("#playlists [data-testid='playlist-context-menu-create-smart']");
+
     private By newPlaylistInputField = By.cssSelector("#playlists [name='name']");
+
+    private By emptySmartPlaylistElement = By.cssSelector("#playlistWrapper div[class='text'");
 
 //
 //    @FindBy(css=" [data-theme='violet']")
@@ -166,6 +171,12 @@ public class HomePage extends BasePage {
         return findElement(errorAlertElement).getText();
     }
 
+    public String getEmptySmartPlaylistText()
+    {
+        isSuccessAlertDisplayed();
+        return findElement(emptySmartPlaylistElement).getText().trim();
+    }
+
 //
 //    public boolean isUpdatedThemeDisplayed()
 //    {
@@ -181,6 +192,12 @@ public class HomePage extends BasePage {
          playListInputField.sendKeys(newPlayListName);
          playListInputField.sendKeys(Keys.ENTER);
      }
+
+    public void clickNewSmartPlaylist()
+    {
+        findElement(playlistPlusBtn).click();
+        findElement(smartPlaylistBtn).click();
+    }
 
     public String generateRandomName(){
         return UUID.randomUUID().toString().replace("-","");
